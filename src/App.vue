@@ -1,12 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link> -->
-    </div>
-    <router-view />
+    <div id="nav"></div>
+    <router-view :cart="model" v-on:cart="actionCart" />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      model: [],
+    };
+  },
+  watch: {
+    model() {
+      console.log(this.model);
+    },
+  },
+  methods: {
+    actionCart(nVal) {
+      this.model = nVal;
+    },
+  },
+};
+</script>
 
 <style>
 .tabs-custom {
@@ -370,7 +387,12 @@
   height: 30px;
   position: fixed;
   bottom: 0;
-  background-image: linear-gradient(to top, #fff 15%, rgba(255, 255, 255, 0.3) 82%, rgba(255, 255, 255, 0.01) 109%);
+  background-image: linear-gradient(
+    to top,
+    #fff 15%,
+    rgba(255, 255, 255, 0.3) 82%,
+    rgba(255, 255, 255, 0.01) 109%
+  );
   z-index: 1001;
 }
 
@@ -636,16 +658,25 @@
     margin: -15px -20px 0;
   }
 
-  .menu-list-wrapper .checkout-bt-inner .cus-global-overlay-wrapper .dialog-title--left {
+  .menu-list-wrapper
+    .checkout-bt-inner
+    .cus-global-overlay-wrapper
+    .dialog-title--left {
     text-align: left;
     text-transform: uppercase;
   }
 
-  .menu-list-wrapper .checkout-bt-inner .cus-global-overlay-wrapper .dialog-close {
+  .menu-list-wrapper
+    .checkout-bt-inner
+    .cus-global-overlay-wrapper
+    .dialog-close {
     display: none !important;
   }
 
-  .menu-list-wrapper .checkout-bt-inner .cus-global-overlay-wrapper .menu-item-order {
+  .menu-list-wrapper
+    .checkout-bt-inner
+    .cus-global-overlay-wrapper
+    .menu-item-order {
     padding: 7px 0 !important;
   }
 
@@ -761,20 +792,60 @@
     font-size: 12px;
   }
 
-  .mat-dialog-container app-authentication .authentication-inner button.btn-log-fb img,
-  .mat-dialog-container app-authentication .authentication-inner button.btn-log-gg img,
+  .mat-dialog-container
+    app-authentication
+    .authentication-inner
+    button.btn-log-fb
+    img,
+  .mat-dialog-container
+    app-authentication
+    .authentication-inner
+    button.btn-log-gg
+    img,
   .mat-dialog-container app-authentication .login-inner button.btn-log-fb img,
   .mat-dialog-container app-authentication .login-inner button.btn-log-gg img,
-  .mat-dialog-container app-authentication .register-inner button.btn-log-fb img,
-  .mat-dialog-container app-authentication .register-inner button.btn-log-gg img,
-  .mat-dialog-container app-login-by-email .authentication-inner button.btn-log-fb img,
-  .mat-dialog-container app-login-by-email .authentication-inner button.btn-log-gg img,
+  .mat-dialog-container
+    app-authentication
+    .register-inner
+    button.btn-log-fb
+    img,
+  .mat-dialog-container
+    app-authentication
+    .register-inner
+    button.btn-log-gg
+    img,
+  .mat-dialog-container
+    app-login-by-email
+    .authentication-inner
+    button.btn-log-fb
+    img,
+  .mat-dialog-container
+    app-login-by-email
+    .authentication-inner
+    button.btn-log-gg
+    img,
   .mat-dialog-container app-login-by-email .login-inner button.btn-log-fb img,
   .mat-dialog-container app-login-by-email .login-inner button.btn-log-gg img,
-  .mat-dialog-container app-login-by-email .register-inner button.btn-log-fb img,
-  .mat-dialog-container app-login-by-email .register-inner button.btn-log-gg img,
-  .mat-dialog-container app-register .authentication-inner button.btn-log-fb img,
-  .mat-dialog-container app-register .authentication-inner button.btn-log-gg img,
+  .mat-dialog-container
+    app-login-by-email
+    .register-inner
+    button.btn-log-fb
+    img,
+  .mat-dialog-container
+    app-login-by-email
+    .register-inner
+    button.btn-log-gg
+    img,
+  .mat-dialog-container
+    app-register
+    .authentication-inner
+    button.btn-log-fb
+    img,
+  .mat-dialog-container
+    app-register
+    .authentication-inner
+    button.btn-log-gg
+    img,
   .mat-dialog-container app-register .login-inner button.btn-log-fb img,
   .mat-dialog-container app-register .login-inner button.btn-log-gg img,
   .mat-dialog-container app-register .register-inner button.btn-log-fb img,
@@ -912,11 +983,16 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.menu-categories-inner .menu-categories--content .menu-categories--item:last-child {
+.menu-categories-inner
+  .menu-categories--content
+  .menu-categories--item:last-child {
   border-bottom: none;
 }
 
-.menu-categories-inner .menu-categories--content .menu-categories--item .item--count {
+.menu-categories-inner
+  .menu-categories--content
+  .menu-categories--item
+  .item--count {
   color: var(--tocotoco-color-brown-dark);
 }
 
@@ -955,7 +1031,10 @@
   justify-content: space-between;
 }
 
-.cus-global-overlay-wrapper .dialog-title .dialog-title-top .dialog-title--left {
+.cus-global-overlay-wrapper
+  .dialog-title
+  .dialog-title-top
+  .dialog-title--left {
   width: calc(100% - 53px);
 }
 
@@ -996,12 +1075,18 @@
   padding: 7px 15px;
 }
 
-.cus-global-overlay-wrapper .dialog-title .dialog-title-bottom.no-group .title-group {
+.cus-global-overlay-wrapper
+  .dialog-title
+  .dialog-title-bottom.no-group
+  .title-group {
   background: var(--tocotoco-color-dark-bg);
   font-weight: 500;
 }
 
-.cus-global-overlay-wrapper .dialog-title .dialog-title-bottom.no-group .btn-group {
+.cus-global-overlay-wrapper
+  .dialog-title
+  .dialog-title-bottom.no-group
+  .btn-group {
   cursor: pointer;
 }
 
@@ -1057,23 +1142,36 @@
   padding: 7px 15px;
 }
 
-.cus-global-overlay-wrapper .dialog-group-info .group-selected-title .ava-selected {
+.cus-global-overlay-wrapper
+  .dialog-group-info
+  .group-selected-title
+  .ava-selected {
   padding-left: 5px;
 }
 
-.cus-global-overlay-wrapper .dialog-group-info .group-selected-title .ava-selected img {
+.cus-global-overlay-wrapper
+  .dialog-group-info
+  .group-selected-title
+  .ava-selected
+  img {
   width: 35px;
   margin-left: -5px;
   border-radius: 50%;
   float: left;
 }
 
-.cus-global-overlay-wrapper .dialog-group-info .group-selected-title .quantity-selected {
+.cus-global-overlay-wrapper
+  .dialog-group-info
+  .group-selected-title
+  .quantity-selected {
   font-weight: 600;
   margin-left: 15px;
 }
 
-.cus-global-overlay-wrapper .dialog-group-info .group-selected-title .icon-selected {
+.cus-global-overlay-wrapper
+  .dialog-group-info
+  .group-selected-title
+  .icon-selected {
   position: absolute;
   right: 15px;
 }
@@ -1089,7 +1187,9 @@
   border-bottom: 1px solid #f8f8f8;
 }
 
-.cus-global-overlay-wrapper .dialog-group-info .group-list-item::-webkit-scrollbar {
+.cus-global-overlay-wrapper
+  .dialog-group-info
+  .group-list-item::-webkit-scrollbar {
   display: none;
 }
 
@@ -1575,98 +1675,92 @@ h1 {
   overflow: auto;
 }
 
-
 /* Popup box BEGIN */
-.hover_bkgr_fricc{
-    background:rgba(0,0,0,.4);
-    cursor:pointer;
-    display:none;
-    height:100%;
-    position:fixed;
-    text-align:center;
-    top:0;
-    width:100%;
-    z-index:10000;
+.hover_bkgr_fricc {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: none;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
 }
-.hover_bkgr_fricc .helper{
-    display:inline-block;
-    height:100%;
-    vertical-align:middle;
+.hover_bkgr_fricc .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 .hover_bkgr_fricc > div {
-    background-color: #fff;
-    box-shadow: 10px 10px 60px #555;
-    display: inline-block;
-    height: auto;
-    max-width: 551px;
-    min-height: 100px;
-    vertical-align: middle;
-    width: 60%;
-    position: relative;
-    border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 10px 10px 60px #555;
+  display: inline-block;
+  height: auto;
+  max-width: 551px;
+  min-height: 100px;
+  vertical-align: middle;
+  width: 60%;
+  position: relative;
+  border-radius: 8px;
 }
 .popupCloseButton {
-    background-color: #fff;
-    border: 3px solid #999;
-    border-radius: 50px;
-    cursor: pointer;
-    display: inline-block;
-    font-family: arial;
-    font-weight: bold;
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    font-size: 25px;
-    line-height: 30px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
+  background-color: #fff;
+  border: 3px solid #999;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: arial;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 25px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
 }
 .popupCloseButton:hover {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 .trigger_popup_fricc {
-    cursor: pointer;
-    font-size: 20px;
-    margin: 20px;
-    display: inline-block;
-    font-weight: bold;
-    background-color: rgb(216, 185, 121);
-    padding: 10px;
-    border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 20px;
+  display: inline-block;
+  font-weight: bold;
+  background-color: rgb(216, 185, 121);
+  padding: 10px;
+  border-radius: 20px;
 }
 /* Popup box BEGIN */
 
-
-#style-2::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+#style-2::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
 }
 
-#style-2::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
+#style-2::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
 }
 
-#style-2::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #535353;
+#style-2::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #535353;
 }
-.scrollbar
-{
-    background-color: white;
-	float: left;
-    height: 300px;
-    width: 100%;
-	overflow-y: scroll;
-	margin-bottom: 25px;
+.scrollbar {
+  background-color: white;
+  float: left;
+  height: 300px;
+  width: 100%;
+  overflow-y: scroll;
+  margin-bottom: 25px;
 }
-.scrollbar.sd{
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.scrollbar.sd {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

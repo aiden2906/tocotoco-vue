@@ -24,6 +24,7 @@ import $ from "jquery";
 const SETTING_ENDPOINT = "https://api.tocotocotea.com/v1/settings";
 
 export default {
+  props: ["value"],
   components: {
     Cart,
     Categories,
@@ -57,17 +58,14 @@ export default {
       handler(nVal) {
         const { id } = nVal;
         const index = this.cart.findIndex((c) => c.id === id);
-        console.log(index);
         if (index !== -1) {
           this.$set(this.cart, index, {
             ...this.cart[index],
             quantity: this.cart[index].quantity + 1,
           });
-          console.log("cart", this.cart);
         } else {
           const product = this.products.find((p) => p.id === id);
           this.cart.push({ ...product, quantity: 1 });
-          console.log("cart", this.cart);
         }
       },
       deep: true,
@@ -92,6 +90,7 @@ export default {
             });
           }
         }
+        this.$emit('cart', this.cart);
       },
     },
   },
