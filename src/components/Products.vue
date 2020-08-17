@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <div class="group-title active">
-      <span class="group-title--label">{{ collectionId }}</span>
-      <!-- <span class="group-title--right">
-        <span class="count-product">{%= o.count %}</span>
-      </span>-->
-    </div>
+  <div style="width: 50%; float: left;">
     <div class="menu-group-list active" id="products">
-      <app-menu-item-product-grid v-for="product in products" :key="product.id" class="item-left menu-item">
+      <app-menu-item-product-grid
+        v-for="product in products"
+        :key="product.id"
+        class="item-left menu-item"
+      >
         <div class="item-menu-product-inner">
           <div class="product-feature-img">
-            <!-- <img src="{%=p.imageUrl%}" /> -->
+            <img :src="product.images" />
           </div>
           <div class="item-mn-product-infor">
             <div class="product-title">
@@ -21,7 +19,7 @@
             </div>
           </div>
           <div class="item-mn-product-action">
-            <div class="item-mn-product-add">+</div>
+            <div class="item-mn-product-add" @click="()=>onAddClick(product.id)">+</div>
           </div>
         </div>
       </app-menu-item-product-grid>
@@ -30,16 +28,20 @@
 </template>
 
 <script>
-import $ from "jquery";
-let url = `https://api.tocotocotea.com/v1/collections/<ID>/products`;
 export default {
-  props: ["products"],
+  props: ["products", "value"],
   created() {
-    url = url.replace("<ID>", this.collectionId);
-    $.get(url, (data) => {
-      this.products.push(...data.products);
-      console.log('result', this.products)
-    });
+    console.log(this.products);
+  },
+  data() {
+    return {
+      toggle: true,
+    };
+  },
+  methods: {
+    onAddClick(id) {
+      this.$emit("input", { id, toggle: !this.toggle });
+    },
   },
 };
 </script>
