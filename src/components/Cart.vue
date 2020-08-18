@@ -44,14 +44,14 @@ export default {
   },
   created() {},
   methods: {
-    removeAll(){
-      this.$emit('removeAll', Math.random()*10)
+    removeAll() {
+      this.$emit("removeAll", Math.random() * 10);
     },
     payment() {
-      if (this.cart.length === 0){
+      if (this.cart.length === 0) {
         return;
       }
-      window.cart = this.cart;
+      this.$store.commit("changeCart", this.cart);
       this.$router.push("/payment");
     },
     changeCartItem(id, action = "add") {

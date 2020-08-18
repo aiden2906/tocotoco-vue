@@ -60,9 +60,10 @@ export default {
   components: {},
   methods: {
     pay() {
-      if (!window.cart || !window.cart.length) {
+      if (!this.$store.state.cart || this.$store.state.cart.length === 0) {
         return;
       }
+      const cart = this.$store.state.cart;
       const cb = (err) => {
         if (err) {
           alert("Khong the gui tin nhan");
@@ -77,7 +78,7 @@ export default {
       message += `Số điện thoại: ${this.phone}\n`;
       message += `Ghi chú: ${this.note}\n`;
       message += "====== Sản phẩm ========\n";
-      message += window.cart
+      message += cart
         .map((c) => {
           return `${c.name} x ${c.quantity} = ${this.formatMoney(
             c.minPrice * c.quantity + ""
@@ -85,8 +86,9 @@ export default {
         })
         .join("");
       message += `=======================\nTổng tiền : ${this.formatMoney(
-        window.cart.reduce((cur, i) => cur + i.quantity * i.minPrice, 0) + ""
+        cart.reduce((cur, i) => cur + i.quantity * i.minPrice, 0) + ""
       )}`;
+
       this.sendMessage(groupId, message, token, cb);
     },
     back() {

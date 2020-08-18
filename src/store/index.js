@@ -7,4 +7,10 @@ export default new Vuex.Store({
   state: {
     cart: [],
   },
+  mutations: {
+    changeCart(state, nVal) {
+      console.log(nVal)
+      state.cart = nVal;
+    },
+  },
 });

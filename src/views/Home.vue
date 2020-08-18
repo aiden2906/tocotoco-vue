@@ -16,9 +16,9 @@
 
 
 <script>
-import Cart from "../components/Cart";
 import Categories from "../components/Categories";
 import Products from "../components/Products";
+import Cart from "../components/Cart";
 import $ from "jquery";
 
 const SETTING_ENDPOINT = "https://api.tocotocotea.com/v1/settings";
@@ -26,9 +26,9 @@ const SETTING_ENDPOINT = "https://api.tocotocotea.com/v1/settings";
 export default {
   props: ["value"],
   components: {
-    Cart,
     Categories,
     Products,
+    Cart,
   },
   data() {
     return {
@@ -41,7 +41,6 @@ export default {
     };
   },
   created() {
-    console.log('cart', this.$store.state.cart)
     $.get(SETTING_ENDPOINT, (resp) => {
       const setting = resp.mobile.south;
       this.collections = setting.menu_screen.list_collections.filter(
@@ -91,7 +90,6 @@ export default {
             });
           }
         }
-        this.$emit('cart', this.cart);
       },
     },
   },
