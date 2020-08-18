@@ -2,13 +2,9 @@
   <div id="app" style="width: 80%; margin: auto;">
     <div class="menu-categories-inner">
       <div class="menu-categories--title">Danh mục</div>
-      <Categories
-        :collections="collections"
-        v-model="activatedCollection"
-        class="menu-categories--content"
-      ></Categories>
-      <Products :products="products" v-model="addProduct" class="menu-group-inner"></Products>
-      <Cart :cart="cart" class="menu-cart-item" v-model="actionInCart" v-on:removeAll="removeAll"></Cart>
+      <Categories class="menu-categories--content" v-model="activatedCollection" :abc="products"></Categories>
+      <Products class="menu-group-inner" v-model="addProduct"></Products>
+      <Cart class="menu-cart-item" v-model="actionInCart" v-on:removeAll="removeAll"></Cart>
       <div style="clear: both;"></div>
     </div>
   </div>
@@ -19,12 +15,8 @@
 import Categories from "../components/Categories";
 import Products from "../components/Products";
 import Cart from "../components/Cart";
-import $ from "jquery";
-
-const SETTING_ENDPOINT = "https://api.tocotocotea.com/v1/settings";
 
 export default {
-  props: ["value"],
   components: {
     Categories,
     Products,
@@ -32,21 +24,24 @@ export default {
   },
   data() {
     return {
-      collections: [],
       activatedCollection: "",
-      products: [],
       addProduct: {},
-      cart: [],
       actionInCart: {},
     };
   },
+  computed: {
+    collections() {
+      return this.$store.state.collections;
+    },
+    products() {
+      return this.$store.state.products;
+    },
+    cart() {
+      return this.$store.state.cart;
+    },
+  },
   created() {
-    $.get(SETTING_ENDPOINT, (resp) => {
-      const setting = resp.mobile.south;
-      this.collections = setting.menu_screen.list_collections.filter(
-        (c) => c.col_id
-      );
-    });
+    this.$store.dispatch("fetchCollection");
   },
   watch: {
     activatedCollection(nVal) {
@@ -95,11 +90,7 @@ export default {
   },
   methods: {
     getProductsByCollectionId(colId) {
-      let url = `https://api.tocotocotea.com/v1/collections/<ID>/products`;
-      url = url.replace("<ID>", colId);
-      $.get(url, (data) => {
-        this.products = data.products;
-      });
+      this.$store.dispatch("fetchProduct", { colId });
     },
     removeAll() {
       this.cart = [];

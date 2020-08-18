@@ -48,7 +48,6 @@ const token = "818392022:AAEuHp2dFA5MYcC7r_NQHobsFzG8Z4DM2ow";
 const groupId = "-430179139";
 export default {
   name: "Payment",
-  props: ["cart"],
   data() {
     return {
       name: "",

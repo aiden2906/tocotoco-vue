@@ -29,15 +29,15 @@
 
 <script>
 export default {
-  props: ["products", "value"],
-  data() {
-    return {
-      toggle: true,
-    };
+  props: ["value"],
+  computed:{
+    products(){
+      return this.$store.state.products;
+    }
   },
   methods: {
     onAddClick(id) {
-      this.$emit("input", { id, toggle: !this.toggle });
+      this.$emit("input", { id });
     },
   },
 };

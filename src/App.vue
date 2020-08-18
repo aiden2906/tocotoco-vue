@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav"></div>
-    <router-view :cart="model" v-on:cart="actionCart" />
+    <router-view />
   </div>
 </template>
 
@@ -10,20 +10,6 @@ import store from "./store/index";
 
 export default {
   store,
-  data() {
-    return {
-      model: [],
-    };
-  },
-  watch: {
-    model() {
-    },
-  },
-  methods: {
-    actionCart(nVal) {
-      this.model = nVal;
-    },
-  },
 };
 </script>
 

@@ -13,9 +13,11 @@
 
 <script>
 export default {
-  props: ["value", "collections"],
-  data() {
-    return {};
+  props: ["value"],
+  computed: {
+    collections() {
+      return this.$store.state.collections;
+    },
   },
   mounted() {},
   methods: {

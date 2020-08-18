@@ -38,9 +38,11 @@
 
 <script>
 export default {
-  props: ["cart", "value"],
-  data() {
-    return {};
+  props: ["value"],
+  computed:{
+    cart(){
+      return this.$store.state.cart;
+    }
   },
   created() {},
   methods: {
@@ -51,7 +53,7 @@ export default {
       if (this.cart.length === 0) {
         return;
       }
-      this.$store.commit("changeCart", this.cart);
+      this.$store.dispatch("changeCart", this.cart);
       this.$router.push("/payment");
     },
     changeCartItem(id, action = "add") {
