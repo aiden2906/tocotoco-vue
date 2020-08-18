@@ -41,6 +41,7 @@ export default {
     };
   },
   created() {
+    console.log('cart', this.$store.state.cart)
     $.get(SETTING_ENDPOINT, (resp) => {
       const setting = resp.mobile.south;
       this.collections = setting.menu_screen.list_collections.filter(

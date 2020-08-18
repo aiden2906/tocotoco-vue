@@ -1,10 +1,10 @@
 <template>
   <div style="width: 50%; float: left;">
     <div class="menu-group-list active" id="products">
-      <app-menu-item-product-grid
+      <div
         v-for="product in products"
         :key="product.id"
-        class="item-left menu-item"
+        class="item-left menu-item app-menu-item-product-grid"
       >
         <div class="item-menu-product-inner">
           <div class="product-feature-img">
@@ -22,7 +22,7 @@
             <div class="item-mn-product-add" @click="()=>onAddClick(product.id)">+</div>
           </div>
         </div>
-      </app-menu-item-product-grid>
+      </div>
     </div>
   </div>
 </template>
@@ -30,9 +30,6 @@
 <script>
 export default {
   props: ["products", "value"],
-  created() {
-    console.log(this.products);
-  },
   data() {
     return {
       toggle: true,

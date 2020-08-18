@@ -20,7 +20,6 @@ export default {
   mounted() {},
   methods: {
     handleChooseCollection(id) {
-      console.log(id);
       this.$emit("input", id);
     },
   },

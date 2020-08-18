@@ -6,7 +6,10 @@
 </template>
 
 <script>
+import store from "./store/index";
+
 export default {
+  store,
   data() {
     return {
       model: [],
@@ -14,7 +17,6 @@ export default {
   },
   watch: {
     model() {
-      console.log(this.model);
     },
   },
   methods: {
@@ -26,6 +28,9 @@ export default {
 </script>
 
 <style>
+html{
+  font-family: Arial, Helvetica, sans-serif;
+}
 .tabs-custom {
   display: flex;
   height: 68px;
@@ -1547,7 +1552,7 @@ export default {
   margin-right: 5px;
 }
 
-app-menu-item-product-grid {
+.app-menu-item-product-grid {
   width: 29%;
   position: relative;
   background-color: white;
@@ -1596,7 +1601,7 @@ app-menu-item-product-grid {
 
 h1 {
   text-align: center;
-  font-family: Tahoma, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   color: #06d85f;
   margin: 80px 0;
 }
@@ -1655,7 +1660,7 @@ h1 {
 .popup h2 {
   margin-top: 0;
   color: #333;
-  font-family: Tahoma, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 .popup .close {
   position: absolute;

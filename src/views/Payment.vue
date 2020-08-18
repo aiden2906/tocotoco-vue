@@ -1,35 +1,40 @@
 <template>
   <div class="payment">
-    <button class="btn-back" @click="back">
-      <i class="fa fa-arrow-left"></i> Back
-    </button>
+    <div class="container-header">
+      <button class="btn-back" @click="back">
+        <i class="fa fa-arrow-left"></i>
+      </button>
+      <h3 style="margin: auto">Thêm địa chỉ</h3>
+    </div>
     <form>
-      <label><strong>Liên hệ</strong></label>
+      <label>
+        <strong>Liên hệ</strong>
+      </label>
       <br />
       <br />
+
       <div class="form-line">
         <i class="fa fa-user"></i>
         <input placeholder="Họ và tên" v-model="name" />
       </div>
-      <br />
       <div class="form-line">
         <i class="fa fa-phone"></i>
         <input placeholder="Số điện thoại" v-model="phone" />
       </div>
       <br />
-      <label><strong>Địa chỉ</strong></label>
+      <label>
+        <strong>Địa chỉ</strong>
+      </label>
       <br />
       <br />
       <div class="form-line">
         <i class="fa fa-map-marker"></i>
         <input placeholder="Địa chỉ nhận hàng" v-model="address" />
       </div>
-      <br />
       <div class="form-line">
         <i class="fa fa-sticky-note"></i>
         <input placeholder="Ghi chú" v-model="note" />
       </div>
-      <br />
     </form>
     <div class="container-btn">
       <button class="btn-payment" @click="pay">Thanh toán</button>
@@ -105,7 +110,6 @@ export default {
         });
     },
     formatMoney(text) {
-      console.log(text);
       return text.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ";
     },
   },
@@ -137,6 +141,7 @@ input {
   flex-direction: row;
   align-items: center;
   background-color: white;
+  padding: 10px;
 }
 .form-line i {
   margin-left: 20px;
@@ -149,17 +154,23 @@ input {
   text-align: center;
 }
 .btn-payment {
-  padding: 15px 20px;
-  border: 2px solid black;
+  padding: 7px 20px;
+  border: 1px solid black;
   border-radius: 30px;
-  width: 10%;
+  width: 50%;
   background-color: rgb(216, 185, 121);
   margin: auto;
 }
+.container-header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
 .btn-back {
   padding: 5px 10px;
-  border-radius: 10px;
-  border: 2px solid black;
-  background-color: rgb(216, 185, 121);
+  border: none;
+  background-color: white;
 }
 </style>
