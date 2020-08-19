@@ -52,15 +52,18 @@ export default {
     addProduct: {
       handler(nVal) {
         const { id } = nVal;
-        const index = this.cart.findIndex((c) => c.id === id);
+        const json = JSON.stringify(this.cart);
+        const cloneCart = JSON.parse(json);
+        const index = cloneCart.findIndex((c) => c.id === id);
         if (index !== -1) {
-          this.$set(this.cart, index, {
-            ...this.cart[index],
-            quantity: this.cart[index].quantity + 1,
-          });
+          cloneCart[index].quantity += 1;
+          this.$store.dispatch("changeCart", cloneCart);
         } else {
           const product = this.products.find((p) => p.id === id);
-          this.cart.push({ ...product, quantity: 1 });
+          this.$store.dispatch("changeCart", [
+            ...cloneCart,
+            { ...product, quantity: 1 },
+          ]);
         }
       },
       deep: true,
@@ -69,22 +72,19 @@ export default {
       deep: true,
       handler(nVal) {
         const { action, id } = nVal;
-        const index = this.cart.findIndex((c) => c.id === id);
+        const json = JSON.stringify(this.cart);
+        const cloneCart = JSON.parse(json);
+        const index = cloneCart.findIndex((c) => c.id === id);
         if (action === "add") {
-          this.$set(this.cart, index, {
-            ...this.cart[index],
-            quantity: this.cart[index].quantity + 1,
-          });
+          cloneCart[index].quantity += 1;
         } else {
           if (this.cart[index].quantity === 1) {
-            this.cart.splice(index, 1);
+            cloneCart.splice(index, 1);
           } else {
-            this.$set(this.cart, index, {
-              ...this.cart[index],
-              quantity: this.cart[index].quantity - 1,
-            });
+            cloneCart[index].quantity -= 1;
           }
         }
+        this.$store.dispatch("changeCart", cloneCart);
       },
     },
   },
